@@ -4,6 +4,9 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
+from entities.bank import Bank
+from entities.category import Category
+from entities.payment_type import PaymentType
 from entities.transaction import Transaction, TransactionType
 from presenters.transaction import TransactionPresenter
 from repositories.in_memory.seeds.banks import banks
@@ -24,20 +27,28 @@ class TransactionSchemaValidation(BaseModel):
     bank_id: UUID
     transaction_type: TransactionType
     transaction_date: datetime
+    installment_count: int
+    due_date_every: int
 
 
 @transactions_router.post("/", response_model=TransactionPresenter)
 def create_transaction(
-    transaction: TransactionSchemaValidation,
+    transaction_request_body: TransactionSchemaValidation,
 ):
-    print(transaction)
-    category_is_exist = any(
-        category.id == transaction.category_id for category in categories
-    )
-    bank_is_exist = any(bank.id == transaction.bank_id for bank in banks)
-    payment_type_is_exist = any(
-        payment_type.id == transaction.payment_type_id for payment_type in payment_types
-    )
+    category_is_exist: Category = None
+    bank_is_exist: Bank = None
+    payment_type_is_exist: PaymentType = None
+    for category in categories:
+        if category.id == transaction_request_body.category_id:
+            category_is_exist = category
+
+    for bank in banks:
+        if bank.id == transaction_request_body.bank_id:
+            bank_is_exist = bank
+
+    for payment_type in payment_types:
+        if payment_type.id == transaction_request_body.payment_type_id:
+            payment_type_is_exist = payment_type
 
     if not category_is_exist or not bank_is_exist or not payment_type_is_exist:
         raise HTTPException(
@@ -53,14 +64,18 @@ def create_transaction(
         )
 
     new_transaction = Transaction(
-        amount=transaction.amount,
-        paymentType=transaction.payment_type_id,
-        category=transaction.category_id,
-        bank=transaction.bank_id,
-        transaction_type=transaction.transaction_type,
-        transaction_date=transaction.transaction_date,
+        amount=transaction_request_body.amount,
+        payment_type=payment_type_is_exist,
+        category=category_is_exist,
+        bank=bank_is_exist,
+        transaction_type=transaction_request_body.transaction_type,
+        transaction_date=transaction_request_body.transaction_date,
+        installment_count=transaction_request_body.installment_count,
+        due_date_every=transaction_request_body.installment_count,
     )
+
     transactions.append(new_transaction)
+
     return new_transaction
 
 

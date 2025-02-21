@@ -4,8 +4,8 @@ from pydantic import BaseModel
 
 
 class BankPresenter(BaseModel):
-    ispb: str
-    name: str
-    code: int
-    fullName: str
     id: UUID
+    name: str
+    fullName: str
+    code: int
+    ispb: str
