@@ -1,12 +1,14 @@
 from typing import Optional
-from uuid import UUID, uuid4
+from uuid import UUID
+
+from entities.entity import BaseEntity
 
 
-class Bank:
+class Bank(BaseEntity):
     def __init__(
         self, ispb: str, name: str, code: int, fullName: str, id: Optional[UUID] = None
     ):
-        self.id = id if id else uuid4()
+        super().__init__(id)
         self.name = name
         self.ispb = ispb
         self.code = code

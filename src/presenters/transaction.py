@@ -35,3 +35,5 @@ class TransactionPresenter(BaseModel):
     installment_count: int
     due_date_every: int
     installments: List[InstallmentPresenter]
+    created_at: datetime
+    updated_at: Optional[datetime]
