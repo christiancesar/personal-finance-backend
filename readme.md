@@ -2,6 +2,16 @@
 
 This a simple personal finance application that allows users to track their expenses and income. The application is built using Python and FastAPI.
 
+# Architecture
+
+The application dont follow any specific architecture, but it is divided into the following components:
+- entities
+- controllers
+- services
+- repositories
+- routes
+- presenters
+
 ## Tools
 - Python 3.13.2
 - FastAPI
@@ -13,4 +23,6 @@ This a simple personal finance application that allows users to track their expe
 4. Run the application using `fastapi dev .\src\main.py`
 
 ## Documentation
-1. Open the browser and navigate to `[Redoc](http://127.0.0.1:8000/redoc#tag/transactions/operation/create_transaction_transactions__post)
+1. Open the browser and navigate to:
+- [Swagger](http://127.0.0.1:8000/docs#/)
+- [Redoc](http://127.0.0.1:8000/redoc#tag/)
