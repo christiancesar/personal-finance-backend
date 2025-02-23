@@ -46,7 +46,7 @@ class Transaction(BaseEntity):
         transaction_date: datetime,
         description: Optional[str] = None,
         installment_count: int = 1,
-        due_date_every: int = 30,
+        due_date_every: int = DEFAULT_DUE_DATE_EVERY,
         installments: List[Installment] = None,
         id: Optional[UUID] = None,
     ):
@@ -71,7 +71,7 @@ class Transaction(BaseEntity):
             return 1
 
     def __create_installments(self):
-        if self.payment_type.name == "Credit Card" and self.installment_count >= 1:
+        if self.installment_count >= 1:
             previous_due_date = self.transaction_date
             for i in range(self.installment_count):
                 due_date = previous_due_date + timedelta(days=self.due_date_every)

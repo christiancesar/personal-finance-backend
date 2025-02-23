@@ -26,3 +26,13 @@ The application dont follow any specific architecture, but it is divided into th
 1. Open the browser and navigate to:
 - [Swagger](http://127.0.0.1:8000/docs#/)
 - [Redoc](http://127.0.0.1:8000/redoc#tag/)
+
+## Requisitos
+
+Para desenvolver um sistema de controle financeiro eficaz, é importante considerar funcionalidades como:
+
+- Controle de contas: Permitir o gerenciamento de múltiplas contas bancárias com a possibilidade de cadastrar saldos iniciais.
+- Registro de receitas e despesas: Facilitar o lançamento de entradas e saídas financeiras, categorizando-as adequadamente.
+- Conciliação bancária: Integrar-se com bancos para importar extratos e realizar a conciliação manual.
+- Geração de relatórios financeiros: Produzir relatórios detalhados sobre a saúde financeira, ajudando na tomada de decisão.
+- Segurança e backup de dados: Garantir a proteção e integridade das informações financeiras.
