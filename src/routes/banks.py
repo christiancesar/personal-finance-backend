@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from presenters.bank import BankPresenter
-from repositories.in_memory.seeds.banks import banks
+from presenters.bank_presenter import BankPresenter
+from repositories.in_memory.seeds.banks_seed import banks
 
 banks_router = APIRouter(
     prefix="/banks",

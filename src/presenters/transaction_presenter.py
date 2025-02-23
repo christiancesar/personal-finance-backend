@@ -5,9 +5,9 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
-from .bank import BankPresenter
-from .category import CategoryPresenter
-from .payment_type import PaymentTypePresenter
+from presenters.bank_presenter import BankPresenter
+from presenters.category_presenter import CategoryPresenter
+from presenters.payment_type_presenter import PaymentTypePresenter
 
 
 class TransactionTypePresenter(Enum):

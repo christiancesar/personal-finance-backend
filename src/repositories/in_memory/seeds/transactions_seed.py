@@ -2,9 +2,9 @@ from datetime import datetime
 
 from entities.transaction import Transaction
 
-from .banks import banks
-from .categories import categories
-from .payment_types import payment_types
+from .banks_seed import banks
+from .categories_seed import categories
+from .payment_types_seed import payment_types
 
 transactions = [
     Transaction(

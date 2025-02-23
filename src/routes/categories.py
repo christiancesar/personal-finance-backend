@@ -2,8 +2,8 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 
 from entities.category import Category
-from presenters.category import CategoryPresenter
-from repositories.in_memory.seeds.categories import categories
+from presenters.category_presenter import CategoryPresenter
+from repositories.in_memory.seeds.categories_seed import categories
 
 
 class CategorySchemaValidation(BaseModel):

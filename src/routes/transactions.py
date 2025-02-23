@@ -8,11 +8,11 @@ from entities.bank import Bank
 from entities.category import Category
 from entities.payment_type import PaymentType
 from entities.transaction import Transaction, TransactionType
-from presenters.transaction import TransactionPresenter
-from repositories.in_memory.seeds.banks import banks
-from repositories.in_memory.seeds.categories import categories
-from repositories.in_memory.seeds.payment_types import payment_types
-from repositories.in_memory.seeds.transactions import transactions
+from presenters.transaction_presenter import TransactionPresenter
+from repositories.in_memory.seeds.banks_seed import banks
+from repositories.in_memory.seeds.categories_seed import categories
+from repositories.in_memory.seeds.payment_types_seed import payment_types
+from repositories.in_memory.seeds.transactions_seed import transactions
 
 transactions_router = APIRouter(
     prefix="/transactions",
@@ -31,7 +31,12 @@ class TransactionSchemaValidation(BaseModel):
     due_date_every: int
 
 
-@transactions_router.post("/", response_model=TransactionPresenter)
+@transactions_router.post(
+    "/",
+    name="transaction:create",
+    response_model=TransactionPresenter,
+    description="Create a new transaction",
+)
 def create_transaction(
     transaction_request_body: TransactionSchemaValidation,
 ):
@@ -79,6 +84,11 @@ def create_transaction(
     return new_transaction
 
 
-@transactions_router.get("/", response_model=list[TransactionPresenter])
+@transactions_router.get(
+    "/",
+    name="transaction:list",
+    response_model=list[TransactionPresenter],
+    description="List all transactions of the account",
+)
 def get_transactions():
     return transactions
