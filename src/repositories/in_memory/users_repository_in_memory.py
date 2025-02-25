@@ -21,3 +21,9 @@ class UsersRepositoryInMemory(UsersRepositoryInterface):
 
         self.users.append(new_user)
         return new_user
+
+    def get_user_by_email(self, email: str) -> User | None:
+        for user in self.users:
+            if user.email == email:
+                return user
+        return None

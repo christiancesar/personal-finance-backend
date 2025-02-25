@@ -14,3 +14,7 @@ class UsersRepositoryInterface(ABC):
     @abstractmethod
     def create_user(self, user: CreateUserRepositorySchemaValidation) -> User:
         pass
+
+    @abstractmethod
+    def get_user_by_email(self, email: str) -> User | None:
+        pass
