@@ -30,7 +30,8 @@ class Installment(BaseEntity):
         return self.paid_at is not None
 
 
-"""Data de vencimento para pagamento das parcelas, quando o pagamento for no cartão de crédito"""
+# Intervalo em dias entre os vencimentos das parcelas, quando o pagamento
+# for no cartão de crédito.
 DEFAULT_DUE_DATE_EVERY = 30
 
 
@@ -72,7 +73,7 @@ class Transaction(BaseEntity):
     def __create_installments(self):
         if self.installment_count >= 1:
             previous_due_date = self.transaction_date
-            for i in range(self.installment_count):
+            for _ in range(self.installment_count):
                 due_date = previous_due_date + timedelta(days=self.due_date_every)
                 self.installments.append(
                     Installment(
