@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict
 
 import jwt
@@ -9,8 +9,10 @@ from utils.environment import get_environment
 
 class PyJwtProvider(JwtInterfaceProvider):
     def encode(self, user_id: str) -> str:
-        expire = datetime.now() + timedelta(
-            milliseconds=get_environment().JWT_EXPIRATION
+        # JWT_EXPIRATION is in seconds. Use an aware UTC datetime: PyJWT reads
+        # naive datetimes as UTC, which shifts "exp" by the local offset.
+        expire = datetime.now(timezone.utc) + timedelta(
+            seconds=get_environment().JWT_EXPIRATION
         )
         payload = {"sub": user_id, "exp": expire}
 
