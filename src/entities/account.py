@@ -1,4 +1,3 @@
-from typing import List, Optional
 from uuid import UUID
 
 from .bank import Bank
@@ -14,8 +13,8 @@ class Account(BaseEntity):
         balance: float = 0.0,
         incomes: float = 0.0,
         expenses: float = 0.0,
-        transactions: List[Transaction] | None = [],
-        id: Optional[UUID] = None,
+        transactions: list[Transaction] | None = None,
+        id: UUID | None = None,
     ):
         super().__init__(id)
         self.name = name
@@ -23,4 +22,4 @@ class Account(BaseEntity):
         self.incomes = incomes
         self.expenses = expenses
         self.bank = bank
-        self.transactions = transactions
+        self.transactions = transactions if transactions is not None else []

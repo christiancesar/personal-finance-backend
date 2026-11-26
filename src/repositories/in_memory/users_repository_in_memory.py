@@ -1,5 +1,3 @@
-from typing import List
-
 from entities.user import User
 from repositories.users_repository_interface import (
     CreateUserRepositorySchemaValidation,
@@ -9,7 +7,7 @@ from repositories.users_repository_interface import (
 
 class UsersRepositoryInMemory(UsersRepositoryInterface):
     def __init__(self):
-        self.users: List[User] = []
+        self.users: list[User] = []
 
     def create_user(self, user: CreateUserRepositorySchemaValidation) -> User:
         new_user = User(

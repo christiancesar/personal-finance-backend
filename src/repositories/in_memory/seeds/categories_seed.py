@@ -1,8 +1,6 @@
-from typing import List
-
 from entities.category import Category
 
-categories: List[Category] = [
+categories: list[Category] = [
     Category(name="Food"),
     Category(name="Transport"),
     Category(name="Health"),

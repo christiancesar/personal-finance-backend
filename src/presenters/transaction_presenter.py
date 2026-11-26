@@ -1,6 +1,5 @@
 from datetime import datetime
 from enum import Enum
-from typing import List, Optional
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -19,12 +18,12 @@ class InstallmentPresenter(BaseModel):
     id: UUID
     amount: float
     due_date: datetime
-    paid_at: Optional[datetime]
+    paid_at: datetime | None
 
 
 class TransactionPresenter(BaseModel):
     id: UUID
-    description: Optional[str]
+    description: str | None
     amount: float
     payment_type: CategoryPresenter
     category: PaymentTypePresenter
@@ -34,6 +33,6 @@ class TransactionPresenter(BaseModel):
     transaction_date: datetime
     installment_count: int
     due_date_every: int
-    installments: List[InstallmentPresenter]
+    installments: list[InstallmentPresenter]
     created_at: datetime
-    updated_at: Optional[datetime]
+    updated_at: datetime | None

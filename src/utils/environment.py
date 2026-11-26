@@ -26,7 +26,7 @@ def validate_environment():
 
     except ValidationError as exc:
         print(repr(exc.errors()))
-        raise Exception(exc.errors())
+        raise Exception(exc.errors()) from exc
 
 
 def get_environment() -> Environment:
@@ -40,4 +40,4 @@ def get_environment() -> Environment:
         )
     except ValidationError as exc:
         print(repr(exc.errors()))
-        raise Exception(exc.errors())
+        raise Exception(exc.errors()) from exc
