@@ -15,6 +15,6 @@ class Profile(BaseEntity):
         super().__init__(id)
         self.first_name = first_name
         self.last_name = last_name
-        self.full_name = "{} {}".format(self.first_name, self.last_name)
+        self.full_name = f"{self.first_name} {self.last_name}"
         self.email = email
         self.phone = phone

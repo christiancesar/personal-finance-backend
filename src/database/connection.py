@@ -7,4 +7,3 @@ class DbConnection:
 
     def connect(self):
         return create_engine(self.db_url)
-    

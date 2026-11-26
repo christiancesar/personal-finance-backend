@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 from enum import Enum
-from typing import List, Optional
 from uuid import UUID
 
 from entities.bank import Bank
@@ -19,8 +18,8 @@ class Installment(BaseEntity):
         self,
         amount: float,
         due_date: datetime,
-        paid_at: Optional[datetime] = None,
-        id: Optional[UUID] = None,
+        paid_at: datetime | None = None,
+        id: UUID | None = None,
     ):
         super().__init__(id)
         self.amount = amount
@@ -44,11 +43,11 @@ class Transaction(BaseEntity):
         bank: Bank,
         transaction_type: TransactionType,
         transaction_date: datetime,
-        description: Optional[str] = None,
+        description: str | None = None,
         installment_count: int = 1,
         due_date_every: int = DEFAULT_DUE_DATE_EVERY,
-        installments: List[Installment] = None,
-        id: Optional[UUID] = None,
+        installments: list[Installment] = None,
+        id: UUID | None = None,
     ):
         super().__init__(id)
         self.amount = amount

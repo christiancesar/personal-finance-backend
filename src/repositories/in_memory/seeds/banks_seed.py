@@ -1,8 +1,6 @@
-from typing import List
-
 from entities.bank import Bank
 
-banks: List[Bank] = [
+banks: list[Bank] = [
     Bank(
         ispb="18236120",
         name="Nubank",

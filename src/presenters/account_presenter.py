@@ -1,4 +1,3 @@
-from typing import List
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -14,4 +13,4 @@ class AccountPresenter(BaseModel):
     balance: float
     incomes: float
     expenses: float
-    transactions: List[TransactionPresenter] | None
+    transactions: list[TransactionPresenter] | None
