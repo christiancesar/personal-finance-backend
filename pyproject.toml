@@ -9,3 +9,31 @@ dependencies = [
     "sqlalchemy>=2.1.9",
     "sqlmodel>=0.0.50",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.6",
+]
+
+[tool.ruff]
+# Treat imports of the project's own modules (from services..., from routes...)
+# as first-party when sorting imports.
+src = ["src"]
+# Same as Black. target-version is read from requires-python.
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # Pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "UP",   # pyupgrade
+    "SIM",  # flake8-simplify
+    "FAST", # FastAPI
+]
+
+[tool.ruff.lint.flake8-bugbear]
+# Calls like Depends() in parameter defaults are the FastAPI pattern, not a bug.
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.Path"]
