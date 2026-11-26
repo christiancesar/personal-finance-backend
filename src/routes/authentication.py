@@ -7,7 +7,9 @@ from providers.jwt.implementations.py_jwt_provider import PyJwtProvider
 from providers.password_hashed.implementations.passlib_bcrypt_provider import (
     PasslibBcryptProvider,
 )
-from repositories.in_memory.users_repository_in_memory import UsersRepositoryInMemory
+from repositories.in_memory.users_repository_in_memory import (
+    users_repository_in_memory,
+)
 from services.users.authenticate_user_service import AuthenticateUserService
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -15,7 +17,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 authentication_router = APIRouter(prefix="/authentication", tags=["authentication"])
 
 authentication_user_service = AuthenticateUserService(
-    user_repository=UsersRepositoryInMemory(),
+    user_repository=users_repository_in_memory,
     password_hasher=PasslibBcryptProvider(),
     jwt_provider=PyJwtProvider(),
 )

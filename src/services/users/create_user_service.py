@@ -1,3 +1,4 @@
+from fastapi import HTTPException, status
 from pydantic import BaseModel, EmailStr, Field
 
 from entities.user import User
@@ -25,6 +26,12 @@ class CreateUserService:
         self.password_hasher = password_hasher
 
     def execute(self, user: CreateUserSchemaValidation) -> User:
+        if self.repository.get_user_by_email(user.email):
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail="Email already registered",
+            )
+
         hashed_password = self.password_hasher.hash(password=user.password)
         new_user = self.repository.create_user(
             CreateUserRepositorySchemaValidation(
