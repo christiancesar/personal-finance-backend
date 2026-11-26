@@ -13,7 +13,7 @@ class Account(BaseEntity):
         balance: float = 0.0,
         incomes: float = 0.0,
         expenses: float = 0.0,
-        transactions: list[Transaction] | None = [],
+        transactions: list[Transaction] | None = None,
         id: UUID | None = None,
     ):
         super().__init__(id)
@@ -22,4 +22,4 @@ class Account(BaseEntity):
         self.incomes = incomes
         self.expenses = expenses
         self.bank = bank
-        self.transactions = transactions
+        self.transactions = transactions if transactions is not None else []
