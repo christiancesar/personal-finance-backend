@@ -13,14 +13,16 @@ The application dont follow any specific architecture, but it is divided into th
 - presenters
 
 ## Tools
-- Python 3.13.2
+- Python 3.14+
 - FastAPI
+- uv
 
 ## Installation
 1. Clone the repository
-2. Create a virtual environment using `python -m venv .venv .venv\Scripts\activate` (windows)
-3. Install the dependencies using `pip install -r requirements.txt`
-4. Run the application using `fastapi dev .\src\main.py`
+2. Install [uv](https://docs.astral.sh/uv/)
+3. Create the virtual environment and install the dependencies using `uv sync`
+4. Create a `.env` file with `JWT_SECRET_KEY`, `JWT_ALGORITHM`, `HASH_ROUNDS`, `JWT_EXPIRATION` and `JWT_LEEWAY`
+5. Run the application using `uv run fastapi dev src/main.py`
 
 ## Documentation
 1. Open the browser and navigate to:
