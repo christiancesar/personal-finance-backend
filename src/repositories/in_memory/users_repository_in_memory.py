@@ -1,6 +1,5 @@
 from typing import List
 
-from entities.roles import Roles
 from entities.user import User
 from repositories.users_repository_interface import (
     CreateUserRepositorySchemaValidation,
@@ -16,7 +15,6 @@ class UsersRepositoryInMemory(UsersRepositoryInterface):
         new_user = User(
             email=user.email,
             password=user.password,
-            roles=[Roles.ADMIN],
         )
 
         self.users.append(new_user)
